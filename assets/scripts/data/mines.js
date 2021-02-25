@@ -3,12 +3,11 @@ import { addModaLListeners } from "../listeners/modalListeners.js";
 export class Mines{
     minesArray = [];
     positionsVisited = [];
-    firstClick = true;
+    isPlaying;
 
-    constructor(rows, mines, nodeToPrint){
+    constructor(rows, mines ){
         this.rows = rows;
         this.mines = mines;
-        this.nodeToPrint = nodeToPrint;
         this.createArray(rows);
     }
 
@@ -63,7 +62,6 @@ export class Mines{
         this.minesArray.forEach((row, x) => {
             $board += '<article class="boardRow">'
             row.forEach((position, y)=>{
-                console.log(position);
                 $board += `
                     <button class='boardSquare' id='square${x > 9 ? x : '0' + x }${ y > 9 ? y : '0' + y }' data-x='${x}' data-y='${y}'></button>
                 `;
@@ -71,19 +69,19 @@ export class Mines{
             });
             $board += '</article>'
         });
-        this.nodeToPrint.innerHTML = '';
-        this.nodeToPrint.innerHTML = $board;
-        console.log( this.nodeToPrint );
-        console.log(count)
+        return $board;
 
     }
 
     showContent( x, y, thisClass = this ){
-        if( thisClass.firstClick ){
+        if( !thisClass.isPlaying ){
             thisClass.putMines( x, y );
-            thisClass.firstClick = false;
+            thisClass.isPlaying = true;
         }
-        if( x >=0 && x < thisClass.rows && y >=0 && y < thisClass.rows && thisClass.positionsVisited[x][y]==false){
+
+        let isInside = x >=0 && x < thisClass.rows && y >=0 && y < thisClass.rows;
+
+        if( isInside && thisClass.positionsVisited[x][y]==false && thisClass.isPlaying){
             let target = document.getElementById(`square${x > 9 ? x : '0' + x }${ y > 9 ? y : '0' + y }`);
             let content = thisClass.minesArray[x][y];
 
@@ -91,6 +89,7 @@ export class Mines{
 
             if ( content == -1 ) {
                 target.classList.add('fas', 'fa-bomb');
+                thisClass.isPlaying = false;
                 this.showAllPositionsFromCenter( x, y, this.rows );
             }else if ( content == 0 ) {
                 target.classList.add('empty');
@@ -190,9 +189,10 @@ export class Mines{
                 }
             }
             mainIteration++;
-            const maxDistance = Math.sqrt( Math.pow(this.rows, 2) * 2);
-            setTimeout(()=>{printModal( 'You lose!', this )}, maxDistance * 50 + 200);
+            
         }
+        const maxDistance = Math.sqrt( Math.pow(this.rows, 2) * 2);
+        setTimeout(()=>{printModal( 'You lose!')}, maxDistance * 50 + 200);
 
         function checkCorners( x, y ){
             if(x == 0 && y == 0 || x == 0 && y == rows || x == rows && y == 0 || x == rows && y == rows){
@@ -217,17 +217,8 @@ export class Mines{
 
     checkEnd(){
         if(this.minesLeft == this.positionsLeft){
-            printModal( 'You win!', this );
+            printModal( 'You win!');
         }
-    }
-
-    restartGame(){
-        this.minesArray = [];
-        this.positionsVisited = [];
-        this.nodeToPrint.innerHTML = '';
-        this.createArray( this.rows );
-        this.printBoard( this.nodeToPrint );
-        this.firstClick = true;
     }
 
 }
@@ -244,7 +235,7 @@ function hex_to_RGB(hex) {
 }
 
 
-function printModal( text, mines ){
+function printModal( text){
     const $modal = `
         <div class='modal__background' id='modalBackground'>
             <div class='modal'>
@@ -255,6 +246,6 @@ function printModal( text, mines ){
     `;
 
     document.querySelector('body').innerHTML += $modal;
-    addModaLListeners( mines );
+    addModaLListeners();
 }
 

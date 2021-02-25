@@ -82,6 +82,7 @@ body{
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).one, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).one, .boardSquare.one{
     background-color:#EB649F;
     color: white;
+    border: 1px solid #BB346F;
 }
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).one:hover, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).one:hover, .boardSquare.one:hover, .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).one:focus, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).one:focus, .boardSquare.one:focus{
     box-shadow: none;
@@ -92,6 +93,7 @@ body{
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).two, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).two, .boardSquare.two{
     background-color:#BB346F;
     color: white;
+    border: 1px solid #9B3366;
 }
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).two:hover, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).two:hover, .boardSquare.two:hover, .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).two:focus, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).two:focus, .boardSquare.two:focus{
     box-shadow: none;
@@ -101,6 +103,7 @@ body{
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).three, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).three, .boardSquare.three{
     background-color:#9B3366;
     color: white;
+    border: 1px solid #7B1346
 }
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).three:hover, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).three:hover, .boardSquare.three:hover, .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).three:focus, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).three:focus, .boardSquare.three:focus{
     box-shadow: none;
@@ -111,6 +114,7 @@ body{
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).more, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).more, .boardSquare.more{
     background-color:#7B1346;
     color: white;
+    border: 1px solid #6B0336
 }
 .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).more:hover, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).more:hover, .boardSquare.more:hover, .boardRow:nth-child(2n-1) .boardSquare:nth-child(2n-1).more:focus, .boardRow:nth-child(2n) .boardSquare:nth-child(2n).more:focus, .boardSquare.more:focus{
     box-shadow: none;
