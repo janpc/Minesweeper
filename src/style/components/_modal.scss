@@ -1,0 +1,43 @@
+@use "../helpers" as *;
+
+.modal__background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: #0005;
+}
+
+.modal {
+  margin: 0 auto;
+  padding: 0.5em 2em;
+  background-color: $colorNeutral;
+  color: white;
+  font-size: xx-large;
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px $colorSmooth;
+  border: 2px solid $colorLight;
+  font-family: $mainFont;
+
+  >button {
+    font-size: large;
+    background-color: $colorSmooth;
+    color: white;
+    width: 100px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: $mainFont;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      box-shadow: 0px 0px 10px $colorLight;
+    }
+  }
+}
+

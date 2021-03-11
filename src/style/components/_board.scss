@@ -1,0 +1,42 @@
+@use "../helpers" as *;
+
+.board {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 1em;
+  background-color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 40px $colorSmooth;
+  border: 2px solid $colorLight;
+
+  &__row {
+    display: flex;
+    width: fit-content;
+
+    &__square {
+      width: 30px;
+      height: 30px;
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-size: 18px;
+      background-color: $colorDark;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        box-shadow: inset 0px 0px 8px black;
+      }
+
+      @extend %shownSquare;
+    }
+
+    &:nth-child(2n-1) &__square:nth-child(2n-1),
+    &:nth-child(2n) &__square:nth-child(2n) {
+      background-color: $colorNeutral;
+      @extend %shownSquare;
+    }
+  }
+}

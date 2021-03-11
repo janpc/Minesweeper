@@ -60,10 +60,10 @@ export class Mines{
         let count =0;
         console.log( this.minesArray)
         this.minesArray.forEach((row, x) => {
-            $board += '<article class="boardRow">'
+            $board += '<article class="board__row">'
             row.forEach((position, y)=>{
                 $board += `
-                    <button class='boardSquare' id='square${x > 9 ? x : '0' + x }${ y > 9 ? y : '0' + y }' data-x='${x}' data-y='${y}'></button>
+                    <button class='board__row__square' id='square${x > 9 ? x : '0' + x }${ y > 9 ? y : '0' + y }' data-x='${x}' data-y='${y}'></button>
                 `;
                 count ++;
             });

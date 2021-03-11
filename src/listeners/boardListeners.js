@@ -1,4 +1,4 @@
-import { mines } from "../index.js";
+import { mines } from "../app.js";
 
 export function addBoardListeners($nodeToPrint) {
   $nodeToPrint.addEventListener("click", leftClickFunction);
