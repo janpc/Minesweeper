@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/app.js",
+  entry: "./src/js/app.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -30,6 +30,13 @@ module.exports = {
             presets: ["@babel/preset-env"],
             plugins: ['@babel/plugin-proposal-class-properties']
           },
+        },
+      },
+      {
+        test: require.resolve("jquery"),
+        loader: "expose-loader",
+        options: {
+          exposes: ["$", "jQuery"],
         },
       },
     ],

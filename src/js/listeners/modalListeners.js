@@ -1,6 +1,5 @@
 import { mines, $board } from "../app.js";
 import { Mines } from '../data/mines.js';
-import { addBoardListeners, removeBoardListeners } from '../listeners/boardListeners.js';
 
 
 
@@ -19,7 +18,7 @@ function restartGame(){
     const $modal = document.getElementById("modalBackground");
     const $board = document.getElementById( 'board' );
 
-    removeBoardListeners( $board );
+    mines.removeBoardListeners( $board );
     removeMadalListeners();
     $modal.remove();
     Object.assign(mines, new Mines(30, 200));
