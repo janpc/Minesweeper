@@ -1,5 +1,4 @@
 import { checkIfIsInside } from "./position.js";
-import { printModal } from "../print/modal.js";
 
 function showPosition(x, y, distance, maxDistance, minesArray, rows) {
   if (checkIfIsInside(x, y, rows)) {
@@ -69,10 +68,6 @@ export function showAllPositionsFromCenter(
     }
     mainIteration++;
   }
-
-  setTimeout(() => {
-    printModal("You lose!");
-  }, maxDistance * 50 + 200);
 
   function checkCorners(x, y) {
     if (

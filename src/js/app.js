@@ -1,13 +1,10 @@
 import "../style/main.scss";
 import $ from 'jquery';
 
-import { Mines } from './data/mines.js';
+import { App } from "./classes/App.js";
 
-var  mines;
 const $board = document.getElementById( 'board' );
 
 window.onload= function(){
-    mines = new Mines( 15, 200, $board );
+    const app = new App( $board );
 }
-
-export { mines, $board }

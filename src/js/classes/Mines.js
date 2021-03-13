@@ -1,12 +1,12 @@
-import Chronometer from "../classes/Chronometer.js";
-import { BombCell } from "../classes/BombCell.js";
-import { EmptyCell } from "../classes/EmptyCell.js";
-import { NumberCell } from "../classes/NumberCell.js";
+import Chronometer from "./Chronometer.js";
+import { BombCell } from "./BombCell.js";
+import { EmptyCell } from "./EmptyCell.js";
+import { NumberCell } from "./NumberCell.js";
 import { showAllPositionsFromCenter } from "../helpers/animations.js";
 import { checkIfIsInside } from "../helpers/position.js";
-import { printModal } from "../print/modal.js";
 import { getPositionFromTerget } from "../helpers/getPositionFromTarget.js";
 import { setMinesLeftScore, setPositionsLeftScore } from "../helpers/score.js";
+import { Modal } from "./Modal.js";
 
 export class Mines {
   minesArray = [];
@@ -42,21 +42,22 @@ export class Mines {
     },
   };
 
-  constructor(rows, mines, $nodeToPrint) {
+  constructor(app) {
     this.chronometer = new Chronometer();
-    this.rows = rows;
-    this.mines = mines;
-    this.createArray(rows);
-    this.printBoard($nodeToPrint);
-    this.minesLeft.registerListener(function (val) {
+    this.rows = app.rows;
+    this.mines = app.mines;
+    this.createArray(this.rows);
+    this.printBoard(app.$board);
+    this.minesLeft.registerListener((val) => {
       setMinesLeftScore(val);
     });
-    this.positionsLeft.registerListener(function (val) {
+    this.positionsLeft.registerListener((val) => {
       setPositionsLeftScore(val);
     });
 
-    this.minesLeft.value = mines;
-    this.positionsLeft.value = Math.pow(rows, 2);
+    this.minesLeft.value = this.mines;
+    this.positionsLeft.value = Math.pow(this.rows, 2);
+    this.app = app;
   }
 
   createArray(rows) {
@@ -107,7 +108,7 @@ export class Mines {
   }
 
   printBoard($nodeToPrint) {
-    let $board = "";
+    let $board = "<div>";
     let count = 0;
     this.minesArray.forEach((row, x) => {
       $board += '<article class="board__row">';
@@ -121,11 +122,12 @@ export class Mines {
                 `;
         count++;
       });
-      $board += "</article>";
+      $board += "</article></div>";
     });
+    this.$board = $($board);
     $nodeToPrint.innerHTML = "";
-    $nodeToPrint.innerHTML = $board;
-    this.addBoardListeners($nodeToPrint);
+    $($nodeToPrint).append(this.$board);
+    this.addBoardListeners();
   }
 
   showContent(x, y, thisClass = this) {
@@ -144,8 +146,13 @@ export class Mines {
 
       if (content == "bomb") {
         thisClass.isPlaying = false;
-        thisClass.chronometer.stop();
+        this.chronometer.stop();
         showAllPositionsFromCenter(x, y, this.rows, this.minesArray);
+        const maxDistance = Math.sqrt(Math.pow(this.rows, 2) * 2);
+        setTimeout(() => {
+          this.stop();
+          new Modal("You lose!", this.app.showHome);
+        }, maxDistance * 50 + 200);
       } else if (content == "empty") {
         thisClass.callFunctionOnPositionsAround(
           x,
@@ -190,27 +197,21 @@ export class Mines {
 
   checkEnd() {
     if (this.minesLeft.value == this.positionsLeft.value) {
-      this.chronometer.stop();
+      this.stop();
       printModal("You win!");
     }
   }
 
-  addBoardListeners($nodeToPrint) {
-    $nodeToPrint.addEventListener("click", (event) =>
-      this.leftClickFunction(event)
-    );
+  addBoardListeners() {
+    $(this.$board).on("click", (event) => this.leftClickFunction(event));
 
-    $nodeToPrint.addEventListener("contextmenu", (event) =>
-      this.rightClickFunction(event)
-    );
+    $(this.$board).on("contextmenu", (event) => this.rightClickFunction(event));
   }
 
-  removeBoardListeners($nodeToPrint) {
-    $nodeToPrint.removeEventListener("click", (event) =>
-      this.leftClickFunction(event)
-    );
+  removeBoardListeners() {
+    $(this.$board).off("click", (event) => this.leftClickFunction(event));
 
-    $nodeToPrint.removeEventListener("contextmenu", (event) =>
+    $(this.$board).off("contextmenu", (event) =>
       this.rightClickFunction(event)
     );
   }
@@ -225,5 +226,11 @@ export class Mines {
   leftClickFunction(event) {
     const position = getPositionFromTerget(event.target);
     this.showContent(position.x, position.y);
+  }
+
+  stop() {
+    this.chronometer.stop();
+    this.removeBoardListeners();
+    this.minesArray = null;
   }
 }
