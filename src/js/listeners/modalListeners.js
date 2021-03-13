@@ -21,7 +21,6 @@ function restartGame(){
     mines.removeBoardListeners( $board );
     removeMadalListeners();
     $modal.remove();
-    Object.assign(mines, new Mines(30, 200));
-    $board.innerHTML = mines.printBoard();
+    Object.assign(mines, new Mines(30, 200, $board));
     addBoardListeners( $board );
 }

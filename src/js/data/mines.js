@@ -1,20 +1,62 @@
+import Chronometer from "../classes/Chronometer.js";
 import { BombCell } from "../classes/BombCell.js";
 import { EmptyCell } from "../classes/EmptyCell.js";
 import { NumberCell } from "../classes/NumberCell.js";
 import { showAllPositionsFromCenter } from "../helpers/animations.js";
-import {checkIfIsInside} from "../helpers/position.js";
-import {printModal} from "../print/modal.js";
+import { checkIfIsInside } from "../helpers/position.js";
+import { printModal } from "../print/modal.js";
 import { getPositionFromTerget } from "../helpers/getPositionFromTarget.js";
+import { setMinesLeftScore, setPositionsLeftScore } from "../helpers/score.js";
 
 export class Mines {
   minesArray = [];
   isPlaying;
 
+  minesLeft = {
+    valueInternal: null,
+    valueListener: function (val) {},
+    set value(val) {
+      this.valueInternal = val;
+      this.valueListener(val);
+    },
+    get value() {
+      return this.valueInternal;
+    },
+    registerListener: function (listener) {
+      this.valueListener = listener;
+    },
+  };
+
+  positionsLeft = {
+    valueInternal: null,
+    valueListener: function (val) {},
+    set value(val) {
+      this.valueInternal = val;
+      this.valueListener(val);
+    },
+    get value() {
+      return this.valueInternal;
+    },
+    registerListener: function (listener) {
+      this.valueListener = listener;
+    },
+  };
+
   constructor(rows, mines, $nodeToPrint) {
+    this.chronometer = new Chronometer();
     this.rows = rows;
     this.mines = mines;
     this.createArray(rows);
     this.printBoard($nodeToPrint);
+    this.minesLeft.registerListener(function (val) {
+      setMinesLeftScore(val);
+    });
+    this.positionsLeft.registerListener(function (val) {
+      setPositionsLeftScore(val);
+    });
+
+    this.minesLeft.value = mines;
+    this.positionsLeft.value = Math.pow(rows, 2);
   }
 
   createArray(rows) {
@@ -25,7 +67,7 @@ export class Mines {
       }
       this.minesArray.push(minesRow);
     }
-    this.positionsLeft = Math.pow(rows, 2);
+    this.positionsLeft.value = Math.pow(rows, 2);
   }
 
   putMines(initialClickX, initialClickY) {
@@ -49,7 +91,7 @@ export class Mines {
         i--;
       }
     }
-    this.minesLeft = this.mines;
+    this.minesLeft.value = this.mines;
   }
 
   addOneOnPosition(x, y, thisClass) {
@@ -81,22 +123,28 @@ export class Mines {
       });
       $board += "</article>";
     });
-    $nodeToPrint.innerHTML = '';
+    $nodeToPrint.innerHTML = "";
     $nodeToPrint.innerHTML = $board;
     this.addBoardListeners($nodeToPrint);
   }
 
   showContent(x, y, thisClass = this) {
     if (!thisClass.isPlaying) {
+      thisClass.chronometer.start();
       thisClass.putMines(x, y);
       thisClass.isPlaying = true;
     }
 
     if (checkIfIsInside(x, y, thisClass.rows) && thisClass.isPlaying) {
+      if (!thisClass.minesArray[x][y].getVisited()) {
+        thisClass.positionsLeft.value--;
+      }
+
       const content = thisClass.minesArray[x][y].showContent();
 
       if (content == "bomb") {
         thisClass.isPlaying = false;
+        thisClass.chronometer.stop();
         showAllPositionsFromCenter(x, y, this.rows, this.minesArray);
       } else if (content == "empty") {
         thisClass.callFunctionOnPositionsAround(
@@ -106,7 +154,6 @@ export class Mines {
           thisClass
         );
       }
-      thisClass.positionsLeft--;
     }
     thisClass.checkEnd();
   }
@@ -132,44 +179,51 @@ export class Mines {
   putFlagOnPosition(x, y) {
     const isFlag = this.minesArray[x][y].putFlag();
     if (isFlag == true) {
-      this.minesLeft--;
-      this.positionsLeft--;
-    } else if(isFlag == false){
-      this.minesLeft++;
-      this.positionsLeft++;
+      this.minesLeft.value--;
+      this.positionsLeft.value--;
+    } else if (isFlag == false) {
+      this.minesLeft.value++;
+      this.positionsLeft.value++;
     }
     this.checkEnd();
-    console.log("positions: ", this.positionsLeft, "mines: ", this.minesLeft);
   }
 
   checkEnd() {
-    if (this.minesLeft == this.positionsLeft) {
+    if (this.minesLeft.value == this.positionsLeft.value) {
+      this.chronometer.stop();
       printModal("You win!");
     }
   }
 
   addBoardListeners($nodeToPrint) {
-    $nodeToPrint.addEventListener("click", (event) => this.leftClickFunction(event));
-  
-    $nodeToPrint.addEventListener("contextmenu", (event) => this.rightClickFunction(event));
+    $nodeToPrint.addEventListener("click", (event) =>
+      this.leftClickFunction(event)
+    );
+
+    $nodeToPrint.addEventListener("contextmenu", (event) =>
+      this.rightClickFunction(event)
+    );
   }
-  
+
   removeBoardListeners($nodeToPrint) {
-      $nodeToPrint.removeEventListener("click", (event) => this.leftClickFunction(event));
-    
-      $nodeToPrint.removeEventListener("contextmenu", (event) => this.rightClickFunction(event));
-    }
-  
-  
+    $nodeToPrint.removeEventListener("click", (event) =>
+      this.leftClickFunction(event)
+    );
+
+    $nodeToPrint.removeEventListener("contextmenu", (event) =>
+      this.rightClickFunction(event)
+    );
+  }
+
   rightClickFunction(event) {
     event.preventDefault();
-    const position = getPositionFromTerget(event.target)
-  
+    const position = getPositionFromTerget(event.target);
+
     this.putFlagOnPosition(position.x, position.y);
   }
-  
+
   leftClickFunction(event) {
-    const position = getPositionFromTerget(event.target)
+    const position = getPositionFromTerget(event.target);
     this.showContent(position.x, position.y);
   }
 }

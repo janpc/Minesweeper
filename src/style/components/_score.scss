@@ -1,0 +1,42 @@
+@use "../helpers" as *;
+
+.score {
+  width: calc(100% - 80px);
+  color: white;
+  font-family: $mainFont;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 20px $colorSmooth;
+  border: 2px solid $colorLight;
+  border-radius: 10px;
+  margin: 0 20px;
+  padding: 5px 20px;
+
+  > * {
+    margin: 0;
+  }
+
+  &__clock {
+    font-size: x-large;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+
+    &__positions,
+    &__mines {
+      display: flex;
+      align-items: center;
+      font-size: x-large;
+      width: 120px;
+      justify-content: flex-end;
+
+      &__image {
+        width: 20px;
+        height: auto;
+        margin-left: 10px;
+      }
+    }
+  }
+}

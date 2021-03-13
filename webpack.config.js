@@ -28,7 +28,7 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
-            plugins: ['@babel/plugin-proposal-class-properties']
+            plugins: ["@babel/plugin-proposal-class-properties"],
           },
         },
       },
@@ -37,6 +37,26 @@ module.exports = {
         loader: "expose-loader",
         options: {
           exposes: ["$", "jQuery"],
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[hash].[ext]",
+              outputPath: "img",
+              esModule: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+        options: {
+          esModule: false,
         },
       },
     ],

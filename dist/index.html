@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    
+    <title>MinesWeeper</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+      crossorigin="anonymous"
+    />
   <script defer src="bundle.js"></script></head>
   <body>
-    <button id="btn">Show Alert</button>
+    <div class="game">
+      <section class="score" id="score">
+        <h2 class="score__title">MinesWeeper</h2>
+        <div class='score__info'>
+          <article class="score__info__positions">
+            <img src="img/996bfbc72895e56d1ef4b9dae21cd95a.svg" alt="positions left" class='score__info__positions__image'>
+            <span id="positionsLeft"></span>
+          </article>
+          <article class="score__info__mines">
+            <img src="img/58d4b26c4b17a1fdfa43804730a45662.png" alt="mines left" class='score__info__mines__image'>
+            <span id="minesLeft"></span>
+          </article>
+        </div>
+      </section>
+      <section class="board" id="board"></section>
+    </div>
   </body>
 </html>

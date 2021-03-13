@@ -13,6 +13,21 @@
     />
   </head>
   <body>
-    <section class="board" id="board"></section>
+    <div class="game">
+      <section class="score" id="score">
+        <span class="score__clock" id='chronometer'>00:00</span>
+        <div class='score__info'>
+          <article class="score__info__positions">
+            <span id="positionsLeft"></span>
+            <img src="/src/img/square-regular.svg" alt="positions left" class='score__info__positions__image'>
+          </article>
+          <article class="score__info__mines">
+            <span id="minesLeft"></span>
+            <img src="/src/img/bomb-solid.png" alt="mines left" class='score__info__mines__image'>
+          </article>
+        </div>
+      </section>
+      <section class="board" id="board"></section>
+    </div>
   </body>
 </html>
