@@ -14,27 +14,39 @@
   </head>
   <body>
     <div class="home" id="home">
-      <h1>MinesWeeper</h1>
+      <img src="/src/img/title.png" alt="MinesWeeper" class="home__title" />
       <form>
-        <span for="nMines">Mines:</span>
-        <input type="number" name="nMines" id="nMines" value="200">
-        <span for="nRows">Rows:</span>
-        <input type="number" name="nRows" id="nRows" value="30">
-        <button id="startGame">Start</button>
+        <div>
+          <span for="nRows">Rows:</span>
+          <input type="number" name="nRows" id="nRows" value="30" max="99" min="10"/>
+        </div>
+        <div>
+          <span for="nMines">Mines:</span>
+          <input type="number" name="nMines" id="nMines" value="200" />
+        </div>
       </form>
+      <button id="startGame">Play</button>
     </div>
-    <div class="game" id="game">
-      <button id="goHome" class="fas fa-home"></button>
+    <div class="game displayNone" id="game">
       <section class="score" id="score">
-        <span class="score__clock" id='chronometer'>00:00</span>
-        <div class='score__info'>
+        <button id="goHome" class="fas fa-home"></button>
+        <span class="score__clock" id="chronometer">00:00</span>
+        <div class="score__info">
           <article class="score__info__positions">
             <span id="positionsLeft"></span>
-            <img src="/src/img/square-regular.svg" alt="positions left" class='score__info__positions__image'>
+            <img
+              src="/src/img/square-regular.svg"
+              alt="positions left"
+              class="score__info__positions__image"
+            />
           </article>
           <article class="score__info__mines">
             <span id="minesLeft"></span>
-            <img src="/src/img/bomb-solid.png" alt="mines left" class='score__info__mines__image'>
+            <img
+              src="/src/img/bomb-solid.png"
+              alt="mines left"
+              class="score__info__mines__image"
+            />
           </article>
         </div>
       </section>

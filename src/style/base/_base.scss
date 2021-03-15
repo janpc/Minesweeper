@@ -8,5 +8,8 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: $colorBackground;
+    background: $backgroundImage;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }

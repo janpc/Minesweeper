@@ -1,6 +1,8 @@
 var path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const MinCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "development",
   entry: "./src/js/app.js",
@@ -13,8 +15,8 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          "style-loader",
+          // (style-loader) Creates `style` nodes from JS strings //not now //now extracts css into files
+          MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
@@ -40,17 +42,35 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[hash].[ext]",
-              outputPath: "img",
-              esModule: false,
-            },
+        test: /\.png/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024, // 12kb
           },
-        ],
+        },
+        generator: {
+          filename: "imgs/[hash][ext][query]",
+        },
+      },
+      {
+        test: /\.svg/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 12 * 1024, // 12kb
+          },
+        },
+        generator: {
+          filename: "imgs/[hash][ext][query]",
+        },
+      },
+      {
+        test: /\.(jpe?g|gif)$/i,
+        type: "asset",
+        generator: {
+          filename: "imgs/[hash][ext][query]",
+        },
       },
       {
         test: /\.html$/i,
@@ -64,6 +84,26 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+    }),
+    new MinCssExtractPlugin({filename: "[name].css"}),
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        plugins: [
+          ["gifsicle"],
+          ["jpegtran"],
+          ["optipng", { optimizationLevel: 5 }],
+          [
+            "svgo",
+            {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
+        ],
+      },
     }),
   ],
   devServer: {

@@ -35,8 +35,13 @@
     "@babel/preset-env": "^7.13.10",
     "babel-loader": "^8.2.2",
     "expose-loader": "^2.0.0",
-    "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
+    "image-minimizer-webpack-plugin": "^2.2.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^9.0.0",
+    "mini-css-extract-plugin": "^1.3.9",
     "webpack-cli": "^4.5.0"
   }
 }

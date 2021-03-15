@@ -10,13 +10,13 @@ export class App {
   }
 
   showHome() {
-    $("#home").css("display", "block");
-    $("#game").css("display", "none");
+    $("#home").removeClass("displayNone");
+    $("#game").addClass("displayNone");
   }
 
   showGame() {
-    $("#game").css("display", "block");
-    $("#home").css("display", "none");
+    $("#game").removeClass("displayNone");
+    $("#home").addClass("displayNone");
   }
 
   startGame() {
@@ -35,14 +35,33 @@ export class App {
       this.startGame();
     });
     $("#nMines").on("change", (event) => {
-      this.mines = $(event.target).val();
+      const value = $(event.target).val();
+      this.changeMines(value);
     });
     $("#nRows").on("change", (event) => {
-      this.rows = $(event.target).val();
+      let value = $(event.target).val();
+      if (value < 15) {
+        value = 15;
+      } else if (value > 99) {
+        value = 99;
+      }
+      $(event.target).val(value);
+      this.rows = value;
+      this.changeMines(this.mines);
     });
     $("#goHome").on("click", () => {
       this.stopGame();
       this.showHome();
     });
+  }
+
+  changeMines(value) {
+    const max = Math.pow(this.rows, 2) / 2;
+    if (value > max) {
+      value = Math.floor(max);
+      $("#nMines").val(value);
+    }
+
+    this.mines = value;
   }
 }

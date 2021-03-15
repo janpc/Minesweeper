@@ -17,8 +17,19 @@
     margin: 0;
   }
 
+  #goHome {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    margin-right: min(154px, 33% - 70px  );
+  }
+
   &__clock {
     font-size: x-large;
+    justify-self:baseline;
   }
   &__info {
     display: flex;
