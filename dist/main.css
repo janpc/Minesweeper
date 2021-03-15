@@ -91,7 +91,7 @@ body {
 }
 
 /*---------flag----------*/
-.fa-flag {
+.fa-flag, .fa-question {
   color: white;
 }
 

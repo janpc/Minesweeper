@@ -8,7 +8,7 @@
   <div align="center">
     <span>Javascript Minesweeper</span> 
     <strong> |<strong>
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Paly </strong></a>
+    <a href="https://janpc.github.io/Minesweeper/"><strong>Paly </strong></a>
   </div>
 </p>
 
