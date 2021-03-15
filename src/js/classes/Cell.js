@@ -33,8 +33,13 @@ export class Cell {
       return true;
     } else if (this.visited == null) {
       $(`#${this.id}`).removeClass("fas fa-flag");
-      this.visited = false;
+      $(`#${this.id}`).addClass("fas fa-question");
+      this.visited = '?';
       return false;
+    } else if (this.visited == "?") {
+      $(`#${this.id}`).removeClass("fas fa-question");
+      this.visited = false;
+      return null;
     }
   }
 
@@ -45,9 +50,9 @@ export class Cell {
         if (this.type == "bomb" && this.visited != null) {
           this.showContent();
           $(`#${this.id}`).css({
-            'color':' #fff',
-            'box-shadow':` inset 0px 0px 10px ${rgbToHex(color)}`
-        });
+            color: " #fff",
+            "box-shadow": ` inset 0px 0px 10px ${rgbToHex(color)}`,
+          });
         } else if (this.type == "bomb" && this.visited == null) {
           $(`#${this.id}`).css("color", "#62e0f6");
         } else if (this.type != "bomb" && this.visited == null) {

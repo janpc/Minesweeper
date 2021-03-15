@@ -1,8 +1,3 @@
-
-
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -96,6 +91,7 @@ You will need npm to run this program.
    ```sh
    npm run start
    ```
+4. Run the index.html generated in the dist folder
 
 
 <!-- CONTRIBUTING -->
@@ -127,6 +123,7 @@ Project Link: [https://github.com/janpc/Minesweeper](https://github.com/janpc/Mi
 * [Sass](https://sass-lang.com/)
 * [Font Awesome](https://fontawesome.com)
 * [Google fonts](https://fonts.google.com/)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 
 
