@@ -17,11 +17,11 @@ export default class Chronometer {
   };
 
   constructor() {
-    this.time.value = 0;
     this.time.registerListener(function (val) {
       const str = timeToString(val);
       setTimeScore(str);
     });
+    this.time.value = 0;
   }
 
   start() {

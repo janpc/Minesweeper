@@ -43,6 +43,9 @@ export class Mines {
   };
 
   constructor(app) {
+    this.leftClickFunction = this.leftClickFunction.bind(this);
+    this.rightClickFunction = this.rightClickFunction.bind(this);
+
     this.chronometer = new Chronometer();
     this.rows = app.rows;
     this.mines = app.mines;
@@ -198,22 +201,20 @@ export class Mines {
   checkEnd() {
     if (this.minesLeft.value == this.positionsLeft.value) {
       this.stop();
-      printModal("You win!");
+      new Modal("You win!", this.app.showHome);
     }
   }
 
   addBoardListeners() {
-    $(this.$board).on("click", (event) => this.leftClickFunction(event));
+    $(this.$board).on("click", this.leftClickFunction);
 
-    $(this.$board).on("contextmenu", (event) => this.rightClickFunction(event));
+    $(this.$board).on("contextmenu", this.rightClickFunction);
   }
 
   removeBoardListeners() {
-    $(this.$board).off("click", (event) => this.leftClickFunction(event));
+    $(this.$board).off("click", this.leftClickFunction);
 
-    $(this.$board).off("contextmenu", (event) =>
-      this.rightClickFunction(event)
-    );
+    $(this.$board).off("contextmenu", this.rightClickFunction);
   }
 
   rightClickFunction(event) {
