@@ -163,9 +163,12 @@ export class Mines {
           thisClass.showContent,
           thisClass
         );
+        thisClass.checkEnd();
+      }else{
+        thisClass.checkEnd();
       }
     }
-    thisClass.checkEnd();
+    
   }
 
   callFunctionOnPositionsAround(posX, posY, callback, thisClass) {
