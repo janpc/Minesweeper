@@ -1,38 +1,103 @@
 @import url(https://fonts.googleapis.com/css2?family=Righteous&display=swap);
-.fa-bomb.board__row__square, .board__row:nth-child(2n-1) .fa-bomb.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .fa-bomb.board__row__square:nth-child(2n) {
+.fa-bomb.board__row__square,
+.board__row:nth-child(2n-1) .fa-bomb.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .fa-bomb.board__row__square:nth-child(2n) {
   background-color: #cb0c59;
 }
-.empty.board__row__square, .board__row:nth-child(2n-1) .empty.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .empty.board__row__square:nth-child(2n) {
+.empty.board__row__square,
+.board__row:nth-child(2n-1) .empty.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .empty.board__row__square:nth-child(2n) {
   background-color: #42b0c6;
 }
-.board__row:nth-child(2n-1) .board__row__square:nth-child(2n-1).empty, .board__row:nth-child(2n) .board__row__square:nth-child(2n).empty {
+.board__row:nth-child(2n-1) .board__row__square:nth-child(2n-1).empty,
+.board__row:nth-child(2n) .board__row__square:nth-child(2n).empty {
   background-color: #62e0f6;
 }
-.one.board__row__square, .board__row:nth-child(2n-1) .one.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .one.board__row__square:nth-child(2n) {
+.one.board__row__square,
+.board__row:nth-child(2n-1) .one.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .one.board__row__square:nth-child(2n) {
   background-color: #eb649f;
   color: white;
   border: 1px solid #bb346f;
 }
-.two.board__row__square, .board__row:nth-child(2n-1) .two.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .two.board__row__square:nth-child(2n) {
+.two.board__row__square,
+.board__row:nth-child(2n-1) .two.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .two.board__row__square:nth-child(2n) {
   background-color: #bb346f;
   color: white;
   border: 1px solid #9b3366;
 }
-.three.board__row__square, .board__row:nth-child(2n-1) .three.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .three.board__row__square:nth-child(2n) {
+.three.board__row__square,
+.board__row:nth-child(2n-1) .three.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .three.board__row__square:nth-child(2n) {
   background-color: #9b3366;
   color: white;
   border: 1px solid #7b1346;
 }
-.more.board__row__square, .board__row:nth-child(2n-1) .more.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .more.board__row__square:nth-child(2n) {
+.more.board__row__square,
+.board__row:nth-child(2n-1) .more.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .more.board__row__square:nth-child(2n) {
   background-color: #7b1346;
   color: white;
   border: 1px solid #6b0336;
 }
 
-.fa-bomb.board__row__square, .board__row:nth-child(2n-1) .fa-bomb.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .fa-bomb.board__row__square:nth-child(2n), .empty.board__row__square, .board__row:nth-child(2n-1) .empty.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .empty.board__row__square:nth-child(2n), .one.board__row__square, .board__row:nth-child(2n-1) .one.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .one.board__row__square:nth-child(2n), .two.board__row__square, .board__row:nth-child(2n-1) .two.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .two.board__row__square:nth-child(2n), .three.board__row__square, .board__row:nth-child(2n-1) .three.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .three.board__row__square:nth-child(2n), .more.board__row__square, .board__row:nth-child(2n-1) .more.board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .more.board__row__square:nth-child(2n) {
+.fa-bomb.board__row__square,
+.board__row:nth-child(2n-1) .fa-bomb.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .fa-bomb.board__row__square:nth-child(2n),
+.empty.board__row__square,
+.board__row:nth-child(2n-1) .empty.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .empty.board__row__square:nth-child(2n),
+.one.board__row__square,
+.board__row:nth-child(2n-1) .one.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .one.board__row__square:nth-child(2n),
+.two.board__row__square,
+.board__row:nth-child(2n-1) .two.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .two.board__row__square:nth-child(2n),
+.three.board__row__square,
+.board__row:nth-child(2n-1) .three.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .three.board__row__square:nth-child(2n),
+.more.board__row__square,
+.board__row:nth-child(2n-1) .more.board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .more.board__row__square:nth-child(2n) {
   box-shadow: none;
 }
-.fa-bomb.board__row__square:hover, .board__row:nth-child(2n-1) .fa-bomb.board__row__square:hover:nth-child(2n-1), .board__row:nth-child(2n) .fa-bomb.board__row__square:hover:nth-child(2n), .empty.board__row__square:hover, .board__row:nth-child(2n-1) .empty.board__row__square:hover:nth-child(2n-1), .board__row:nth-child(2n) .empty.board__row__square:hover:nth-child(2n), .one.board__row__square:hover, .board__row:nth-child(2n-1) .one.board__row__square:hover:nth-child(2n-1), .board__row:nth-child(2n) .one.board__row__square:hover:nth-child(2n), .two.board__row__square:hover, .board__row:nth-child(2n-1) .two.board__row__square:hover:nth-child(2n-1), .board__row:nth-child(2n) .two.board__row__square:hover:nth-child(2n), .three.board__row__square:hover, .board__row:nth-child(2n-1) .three.board__row__square:hover:nth-child(2n-1), .board__row:nth-child(2n) .three.board__row__square:hover:nth-child(2n), .more.board__row__square:hover, .board__row:nth-child(2n-1) .more.board__row__square:hover:nth-child(2n-1), .board__row:nth-child(2n) .more.board__row__square:hover:nth-child(2n), .fa-bomb.board__row__square:focus, .board__row:nth-child(2n-1) .fa-bomb.board__row__square:focus:nth-child(2n-1), .board__row:nth-child(2n) .fa-bomb.board__row__square:focus:nth-child(2n), .empty.board__row__square:focus, .board__row:nth-child(2n-1) .empty.board__row__square:focus:nth-child(2n-1), .board__row:nth-child(2n) .empty.board__row__square:focus:nth-child(2n), .one.board__row__square:focus, .board__row:nth-child(2n-1) .one.board__row__square:focus:nth-child(2n-1), .board__row:nth-child(2n) .one.board__row__square:focus:nth-child(2n), .two.board__row__square:focus, .board__row:nth-child(2n-1) .two.board__row__square:focus:nth-child(2n-1), .board__row:nth-child(2n) .two.board__row__square:focus:nth-child(2n), .three.board__row__square:focus, .board__row:nth-child(2n-1) .three.board__row__square:focus:nth-child(2n-1), .board__row:nth-child(2n) .three.board__row__square:focus:nth-child(2n), .more.board__row__square:focus, .board__row:nth-child(2n-1) .more.board__row__square:focus:nth-child(2n-1), .board__row:nth-child(2n) .more.board__row__square:focus:nth-child(2n) {
+.fa-bomb.board__row__square:hover,
+.board__row:nth-child(2n-1) .fa-bomb.board__row__square:hover:nth-child(2n-1),
+.board__row:nth-child(2n) .fa-bomb.board__row__square:hover:nth-child(2n),
+.empty.board__row__square:hover,
+.board__row:nth-child(2n-1) .empty.board__row__square:hover:nth-child(2n-1),
+.board__row:nth-child(2n) .empty.board__row__square:hover:nth-child(2n),
+.one.board__row__square:hover,
+.board__row:nth-child(2n-1) .one.board__row__square:hover:nth-child(2n-1),
+.board__row:nth-child(2n) .one.board__row__square:hover:nth-child(2n),
+.two.board__row__square:hover,
+.board__row:nth-child(2n-1) .two.board__row__square:hover:nth-child(2n-1),
+.board__row:nth-child(2n) .two.board__row__square:hover:nth-child(2n),
+.three.board__row__square:hover,
+.board__row:nth-child(2n-1) .three.board__row__square:hover:nth-child(2n-1),
+.board__row:nth-child(2n) .three.board__row__square:hover:nth-child(2n),
+.more.board__row__square:hover,
+.board__row:nth-child(2n-1) .more.board__row__square:hover:nth-child(2n-1),
+.board__row:nth-child(2n) .more.board__row__square:hover:nth-child(2n),
+.fa-bomb.board__row__square:focus,
+.board__row:nth-child(2n-1) .fa-bomb.board__row__square:focus:nth-child(2n-1),
+.board__row:nth-child(2n) .fa-bomb.board__row__square:focus:nth-child(2n),
+.empty.board__row__square:focus,
+.board__row:nth-child(2n-1) .empty.board__row__square:focus:nth-child(2n-1),
+.board__row:nth-child(2n) .empty.board__row__square:focus:nth-child(2n),
+.one.board__row__square:focus,
+.board__row:nth-child(2n-1) .one.board__row__square:focus:nth-child(2n-1),
+.board__row:nth-child(2n) .one.board__row__square:focus:nth-child(2n),
+.two.board__row__square:focus,
+.board__row:nth-child(2n-1) .two.board__row__square:focus:nth-child(2n-1),
+.board__row:nth-child(2n) .two.board__row__square:focus:nth-child(2n),
+.three.board__row__square:focus,
+.board__row:nth-child(2n-1) .three.board__row__square:focus:nth-child(2n-1),
+.board__row:nth-child(2n) .three.board__row__square:focus:nth-child(2n),
+.more.board__row__square:focus,
+.board__row:nth-child(2n-1) .more.board__row__square:focus:nth-child(2n-1),
+.board__row:nth-child(2n) .more.board__row__square:focus:nth-child(2n) {
   box-shadow: none;
 }
 
@@ -52,7 +117,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url(imgs/938361ed62a25ae54147.jpg);
+  background: linear-gradient(135deg, #053a4c 0%, #071e26 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -82,16 +147,19 @@ body {
   font-size: 18px;
   background-color: #053a4c;
 }
-.board__row__square:hover, .board__row__square:focus {
+.board__row__square:hover,
+.board__row__square:focus {
   outline: none;
   box-shadow: inset 0px 0px 8px black;
 }
-.board__row:nth-child(2n-1) .board__row__square:nth-child(2n-1), .board__row:nth-child(2n) .board__row__square:nth-child(2n) {
+.board__row:nth-child(2n-1) .board__row__square:nth-child(2n-1),
+.board__row:nth-child(2n) .board__row__square:nth-child(2n) {
   background-color: #255a6c;
 }
 
 /*---------flag----------*/
-.fa-flag, .fa-question {
+.fa-flag,
+.fa-question {
   color: white;
 }
 
@@ -116,7 +184,7 @@ body {
   border-radius: 10px;
   box-shadow: 0px 0px 30px #22a0b6;
   border: 2px solid #62e0f6;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
 }
 .modal > button {
   font-size: large;
@@ -126,9 +194,10 @@ body {
   border: 2px solid white;
   border-radius: 5px;
   cursor: pointer;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
 }
-.modal > button:hover, .modal > button:focus {
+.modal > button:hover,
+.modal > button:focus {
   outline: none;
   box-shadow: 0px 0px 10px #62e0f6;
 }
@@ -136,7 +205,7 @@ body {
 .score {
   width: calc(100% - 80px);
   color: white;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -166,14 +235,16 @@ body {
   display: flex;
   align-items: center;
 }
-.score__info__positions, .score__info__mines {
+.score__info__positions,
+.score__info__mines {
   display: flex;
   align-items: center;
   font-size: x-large;
   margin-left: 20px;
   justify-content: flex-end;
 }
-.score__info__positions__image, .score__info__mines__image {
+.score__info__positions__image,
+.score__info__mines__image {
   width: 20px;
   height: auto;
   margin-left: 10px;
@@ -182,12 +253,12 @@ body {
 .home {
   margin: 20px;
   padding: 50px;
-  background-color: #071E26;
+  background-color: #071e26;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 0px 40px #22a0b6;
   border: 2px solid #62e0f6;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
   color: white;
   display: flex;
   flex-direction: column;
@@ -203,14 +274,14 @@ body {
 }
 .home form div span {
   font-size: 36px;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
 }
 .home form div input {
   font-size: 32px;
   width: 75px;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
   border-radius: 10px;
-  border: 2px solid #071E26;
+  border: 2px solid #071e26;
   padding: 0 10px;
   margin: 0;
   outline: none;
@@ -224,7 +295,7 @@ body {
 }
 .home button {
   position: relative;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
   font-size: 36px;
   float: right;
   width: 150px;
@@ -239,7 +310,7 @@ body {
   outline: none;
 }
 .home button::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
